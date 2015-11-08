@@ -2,7 +2,7 @@
 
 library(dplyr) #Easy for data munging
 library(sqldf) #Load only required days
-
+library(tcltk)
 # Where doe the file exist in workspace and download? ---------------------------------------
 
 loc_hpc <- "household_power_consumption.txt"
@@ -14,7 +14,7 @@ if (!file.exists(loc_hpc)){
 }
 
 # Does the file exist? If not unzip the zip file
-if (!file.exists("loc_hpc")){
+if (!file.exists(loc_hpc)){
     unzip("exdata_data_household_power_consumption.zip")
 }
 
@@ -39,7 +39,7 @@ png("plot2.png",width = 480, height = 480)
 
 par(mfrow=c(1,1))
 tbl_Consumption %>%
-    with(plot(DateTime, Global_active_power,xlab="",ylab="Global Active Power (Kilowatts)",pch=NA_integer_)) 
+    with(plot(DateTime, Global_active_power,xlab="",ylab="Global Active Power (kilowatts)",pch=NA_integer_)) 
     with(tbl_Consumption,lines(DateTime, Global_active_power))
 
 dev.off()
